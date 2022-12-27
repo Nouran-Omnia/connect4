@@ -34,11 +34,16 @@ int modifyArray(char a[][2 * m + 1],  char col, int n, int p)
 }
 
 int checkFreeSpaces (char a[][2 * m + 1] , int n , int m){
+    
     int i, j;
     int freeSpaces = n*m ;
-    for(i=0 ; i<n*2 ; i+=2){
-        for(j=1 ; j<m*2+1 ; j+=2){
-            if(a[i][j] != 0){
+    
+    for(i=0 ; i<n*2 ; i+=2)
+    {
+        for(j=1 ; j<m*2+1 ; j+=2)
+        {
+            if(a[i][j] != 0)
+            {
                 freeSpaces--;
             }
         }
@@ -47,12 +52,16 @@ int checkFreeSpaces (char a[][2 * m + 1] , int n , int m){
 }
 
 void winner (char a[][2 * m + 1] , int n , int m){
+    
     int i, j;
     int pointsP1 = 0;
     int pointsP2 = 0;
-    if(checkFreeSpaces (a , n , m) == 0){
-        for( i=0 ; i<n*2-1 ; i+=2){
-            for( j=1 ; j<m*2 ; j+=2){
+    if(checkFreeSpaces (a , n , m) == 0)
+    {
+        for( i=0 ; i<n*2-1 ; i+=2)
+        {
+            for( j=1 ; j<m*2 ; j+=2)
+            {
                 //checking right diagonal elements.
                 if( (a[i][j] == a[i+2][j+2]) && (a[i][j] == a[i+4][j+4]) && (a[i][j] == a[i+6][j+6]))
                 {
