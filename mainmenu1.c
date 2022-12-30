@@ -1,46 +1,23 @@
 # include <stdio.h>
+# include <stdlib.h>
+# include "mainGame.c"
 
-int main (){
 
-    printf("* To ");
-    printf("\033[0;35m");
-    printf("START A NEW GAME ");
-    printf("\033[0;37m");
-    printf("press 1\n");
+void menu(){
 
-    printf("* To ");
-    printf("\033[0;35m");
-    printf("LOAD A GAME ");
-    printf("\033[0;37m");
-    printf("press 2\n");
-
-    printf("* To ");
-    printf("\033[0;35m");
-    printf("SHOW TOP PLAYERS ");
-    printf("\033[0;37m");
-    printf("press 3\n");
-
-    printf("* To ");
-    printf("\033[0;35m");
-    printf("QUIT ");
-    printf("\033[0;37m");
-    printf("the game press 4\n");
+    
+    printf("\033[1;34m[1] Start a new game.\n");
+    printf("\033[1;34m[2] Load a game.\n");
+    printf("\033[1;34m[3] Show top players.\n");
+    printf("\033[1;34m[4] Quit.\n");
 
     int n1;
     scanf ("%d",&n1);
 
-    if( n1 == 1 ){
-        printf("* To ");
-        printf("\033[0;35m");
-        printf("PLAY VS HUMAN ");
-        printf("\033[0;37m");
-        printf("press 1\n");
-
-        printf("* To ");
-        printf("\033[0;35m");
-        printf("PLAY VS COMPUTER ");
-        printf("\033[0;37m");
-        printf("press 2\n");
+    if( n1 == 1 )
+    {
+        printf("\033[1;33m[1] Play VS human.\n");
+        printf("\033[1;33m[2] Play VS computer.\n");
 
         int n2;
         scanf("%d",&n2);
@@ -48,21 +25,54 @@ int main (){
 
         // }else if( n2 == 2 ){
 
-        // }else{
-            //printf("ERROR");
-        // }
+        //}
+        while(n2 != 1 && n2 != 2)
+        {
+            printf("\033[4;31mPlease choose one of the above options : \n");
+            scanf("%d",&n2);
+        }
+    
     }
-
     // }else if( n1 == 2 ){
 
-    // }else if( n1 == 3 ){
-
-    // }else if( n1 == 4 ){
-
     //}
-    else{
-        printf("ERROR");
+    else if( n1 == 3 )
+    {
+        int in ;
+        scanf("%d",&in);
+        struct player arr_topScores[in];
+        int arrSize = 0;
+        FILE* fp;
+        fp = fopen("/Users/mac/Desktop/topScores.txt" , "r" );
+        if(fp == NULL)
+        {
+            printf("File can't be opened\n");
+        }
+        else
+        {
+            while(!feof(fp)){
+                struct player any_player;
+                fgets(any_player.name , 100 , fp);
+                fscanf(fp , "%d\n" , &any_player.points);
+                arr_topScores[arrSize] = any_player;
+                arrSize++;
+            }
+        }
+        fclose(fp);
+        sorting (arr_topScores , arrSize);
+        for(int q=0 ; q<arrSize ; q++){
+            printf("Player #%d Name: %sScore: %d\n", q + 1, arr_topScores[q].name, arr_topScores[q].points);
+        }
+    }
+    else if( n1 == 4 )
+    {
+        exit(0);
+    }
+
+    while ( n1 != 1 && n1 != 2 && n1 != 3 && n1 != 4 )
+    {
+        printf("\033[4;31mPlease choose one of the above options : \n");
+        scanf ("%d",&n1);
     }
     
-    return 0 ;
-    }      
+}      
