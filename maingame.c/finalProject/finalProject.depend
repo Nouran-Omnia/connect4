@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1671827360 source:c:\users\nouran\desktop\finalproject\main.c
-	<stdio.h>
-
-1672005326 source:c:\users\nouran\downloads\my_github\connect4\maingame.c\finalproject\main.c
-	<stdio.h>
-	<stdlib.h>
-
